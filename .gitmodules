@@ -1,0 +1,3 @@
+[submodule "visionfive-linux-mitigations"]
+	path = visionfive-linux-mitigations
+	url = https://github.com/solid-eureka/visionfive-linux-mitigations.git
