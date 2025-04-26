@@ -1,4 +1,4 @@
-obj-m += disable_instret.o
+obj-m += disable_csr.o
 
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(CURDIR)
