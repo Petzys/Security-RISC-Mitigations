@@ -97,48 +97,19 @@ static inline void flush(void* addr) {
 
 typedef void (*fnc)();
 int main(int argc, char* argv[]) {
-    sem_t *asem = sem_open("/attacker_semaphore", O_CREAT, 0666, 0); // Initial value = 0
-    if (asem == SEM_FAILED) {
-        perror("sem_open");
-        exit(EXIT_FAILURE);
-    }
-
-    sem_t *vsem = sem_open("/victim_semaphore", O_CREAT, 0666, 0); // Initial value = 0
-    if (vsem == SEM_FAILED) {
-        perror("sem_open");
-        exit(EXIT_FAILURE);
-    }
-
   start = 0;
   end = 0;
   char* ptr = (char*)((size_t)victim + 14);
 
   signal(SIGILL, trycatch_segfault_handler);
-
-  FILE* fd = fopen("./flush-fault.csv", "w");
-  for (size_t j = 0; j < 1000; j++) {
-    for (size_t i = 0; i < 100; i++) {
-      int cached = i % 2 == 0;
-
-    //   fnc target = (fnc) (cached * (size_t) victim + (1 - cached) * (size_t) dummy);
-    //   target();
-    
-    flush(ptr);
-    sem_post(asem);
-    sem_wait(vsem);
-
-      size_t value = flush_reload_t(ptr);
-      
-
-      if (j > 20) {
-        fprintf(fd, "%zu,%d,%zu\n", i, cached, value);
-      }
-    }
+  
+  while (1)
+  {
+    int time = flush_reload_t(ptr);
+    printf("%5i   %i\n", time, time >= 12000);
+    sleep(1);
   }
 
-  fclose(fd);
-  sem_close(vsem);
-  sem_close(asem);
-  sem_unlink("/attacker_semaphore");
+  // size_t value = flush_reload_t(ptr);
   return 0;
 }
