@@ -98,14 +98,14 @@ int main(int argc, char* argv[]) {
   signal(SIGILL, trycatch_segfault_handler);
 
   FILE* fd = fopen("./flush-fault.csv", "w");
-  for (size_t j = 0; j < 1000; j++) {
-    for (size_t i = 0; i < 100; i++) {
+  for (size_t j = 0; j < 25; j++) {
+    for (size_t i = 0; i < 10; i++) {
       int cached = i % 2 == 0;
       fnc target = (fnc) (cached * (size_t) victim + (1 - cached) * (size_t) dummy);
       target();
 
       size_t value = flush_reload_t(ptr);
-      if (j > 20) {
+      if (j > 5) {
         fprintf(fd, "%zu,%d,%zu\n", i, cached, value);
       }
       flush(ptr);

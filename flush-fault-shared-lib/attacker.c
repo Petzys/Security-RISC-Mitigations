@@ -1,78 +1,144 @@
 #include "mylib.h"
-#include <stdint.h>
+
+#include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
-#include <stdio.h>
-#include <sched.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
+#include <sched.h>
 
-size_t cycle_start, cycle_end;
+#include <semaphore.h>
+#include <fcntl.h>    // For O_CREAT, O_EXCL
+
+
+
+// void victim() {
+//     asm volatile ("j l1\n\t"
+//                   "nop\n\t"
+//                   "nop\n\t"
+//                   "nop\n\t"
+//                   "nop\n\t"
+//                   "nop\n\t"
+//                   "nop\n\t"
+//                   "unimp\n\t"
+//                   "unimp\n\t"
+//                   "unimp\n\t"
+//                   "nop\n\t"
+//                   "l1:nop\n\t");
+// }
+
+size_t start, end;
+//size_t start_instr, end_instr, delta_instr;
+size_t delta;
 
 static jmp_buf trycatch_buf;
-void unblock_signal(int signum) {
-    sigset_t sigs;
-    sigemptyset(&sigs);
-    sigaddset(&sigs, signum);
-    sigprocmask(SIG_UNBLOCK, &sigs, NULL);
+void unblock_signal(int signum __attribute__((__unused__))) {
+  sigset_t sigs;
+  sigemptyset(&sigs);
+  sigaddset(&sigs, signum);
+  sigprocmask(SIG_UNBLOCK, &sigs, NULL);
 }
 
-static inline size_t rdtsc() {
-    size_t val;
-    asm volatile ("rdcycle %0" : "=r"(val));
-    return val;
+static inline uint64_t rdtsc() {
+  uint64_t val;
+  asm volatile ("rdcycle %0" : "=r"(val));
+  //asm volatile("nop");
+  return val;
+}
+
+static inline size_t rdinstret() {
+  size_t val;
+  asm volatile("rdinstret %0" : "=r"(val));
+  return val;
 }
 
 void trycatch_segfault_handler(int signum) {
-    (void)signum;
+  (void)signum;
+  end = rdtsc();
+  //end_instr = rdinstret();
+  if (start) {
+    delta = end - start;
+    //delta_instr = end_instr - start_instr;
+  }
+  unblock_signal(SIGSEGV);
+  unblock_signal(SIGILL);
+  longjmp(trycatch_buf, 1);
+}
 
-    cycle_end = rdtsc();
+int flush_reload_t(void *ptr) {
+  start = 0;
+  end = 0;
 
-    // puts("running fault handler");
+  if (!setjmp(trycatch_buf)) {
+    sched_yield();
+    //start_instr = rdinstret();
+    start = rdtsc();
+    asm volatile ("xor a5, a5, a5\n\t"
+                  "xor a0, a0, a0\n\t"
+                  "jr %0 \n\t" :: "r"(ptr) : "memory", "a0", "a5");
+    printf("WE SHOULD NEVER SEE THIS\n");
+  }
+  return (int)(end - start);
+}
 
-    unblock_signal(SIGILL);
-    unblock_signal(SIGSEGV);
-    longjmp(trycatch_buf, 1);
+static inline void flush(void* addr) {
+
+  asm volatile("xor a7, a7, a7\n"
+               "add a7, a7, %0\n"
+               "fence.i\n\t"
+  : : "r"(addr) : "a7","memory");
 }
 
 
-static inline void flush(void* addr)
-{
-    asm volatile("xor a7, a7, a7 \n"
-                 "add a7, a7, %0 \n"
-                 "fence.i        \n"
-    : : "r"(addr) : "a7", "memory");
-}
+// void dummy() {
+//   asm volatile("nop");
+// }
 
-
-size_t flush_fault_measure(void* addr)
-{
-    flush(addr);
-
-    usleep(100000);
-
-    if (!setjmp(trycatch_buf)) {
-        sched_yield();
-        
-        cycle_start = rdtsc();
-        asm volatile ("xor a5, a5, a5\n\t"
-                      "xor a0, a0, a0\n\t"
-                      "jr %0 \n\t" :: "r"(addr) : "memory", "a0", "a5");
-        puts("WE SHOULD NEVER SEE THIS");
-      }
-      return cycle_end - cycle_start;
-}
-
-
-int main()
-{
-    void* jump_target = (void*)((size_t)control_flow_1 + 14);
-
-    signal(SIGILL, trycatch_segfault_handler);
-    
-    for (int i = 0; i < 100; ++i) {
-        size_t duration = flush_fault_measure(jump_target);
-        if (i >= 50) {
-            printf("%zu\n", duration);
-        }
+typedef void (*fnc)();
+int main(int argc, char* argv[]) {
+    sem_t *asem = sem_open("/attacker_semaphore", O_CREAT, 0666, 0); // Initial value = 0
+    if (asem == SEM_FAILED) {
+        perror("sem_open");
+        exit(EXIT_FAILURE);
     }
+
+    sem_t *vsem = sem_open("/victim_semaphore", O_CREAT, 0666, 0); // Initial value = 0
+    if (vsem == SEM_FAILED) {
+        perror("sem_open");
+        exit(EXIT_FAILURE);
+    }
+
+  start = 0;
+  end = 0;
+  char* ptr = (char*)((size_t)victim + 14);
+
+  signal(SIGILL, trycatch_segfault_handler);
+
+  FILE* fd = fopen("./flush-fault.csv", "w");
+  for (size_t j = 0; j < 1000; j++) {
+    for (size_t i = 0; i < 100; i++) {
+      int cached = i % 2 == 0;
+
+    //   fnc target = (fnc) (cached * (size_t) victim + (1 - cached) * (size_t) dummy);
+    //   target();
+    
+    flush(ptr);
+    sem_post(asem);
+    sem_wait(vsem);
+
+      size_t value = flush_reload_t(ptr);
+      
+
+      if (j > 20) {
+        fprintf(fd, "%zu,%d,%zu\n", i, cached, value);
+      }
+    }
+  }
+
+  fclose(fd);
+  sem_close(vsem);
+  sem_close(asem);
+  sem_unlink("/attacker_semaphore");
+  return 0;
 }
