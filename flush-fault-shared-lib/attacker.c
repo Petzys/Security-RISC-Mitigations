@@ -105,9 +105,15 @@ int main(int argc, char* argv[]) {
   
   while (1)
   {
-    int time = flush_reload_t(ptr);
-    printf("%5i   %i\n", time, time >= 12000);
-    sleep(1);
+    victim();
+    
+    int time = 0;
+    for (int i = 0; i < 200000; ++i) {
+      time += flush_reload_t(ptr);
+    }
+    time /= 200000;
+    printf("%5i\n", time);
+    // sleep(1);
   }
 
   // size_t value = flush_reload_t(ptr);

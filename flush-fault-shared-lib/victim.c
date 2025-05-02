@@ -19,6 +19,8 @@ int main(int argc, char** argv)
 {
     while (1)
     {
+        victim();
+        
         if (argc > 1) {
             flush(0);
         } else {
