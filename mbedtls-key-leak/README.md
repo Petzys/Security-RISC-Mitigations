@@ -37,4 +37,4 @@ This threshold has to be adjusted depending on your system configuration and res
 The post-processing script outputs the medians of all 0- and 1-bits which should give a good estimate for the threshold.
 
 # Works on
-C906 , U74
+C906, U74
