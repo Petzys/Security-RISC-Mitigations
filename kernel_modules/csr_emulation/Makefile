@@ -1,4 +1,4 @@
-obj-m += disable_instret.o
+obj-m += csr_emulation.o
 
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(CURDIR)
@@ -8,4 +8,3 @@ all:
 	
 clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
-	
