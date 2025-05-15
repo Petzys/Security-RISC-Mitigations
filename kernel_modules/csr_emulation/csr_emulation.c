@@ -2,19 +2,19 @@
 #include <linux/init.h>
 
 // requires correct (custom) kernel
-extern unsigned long enable_mitigation_emulate_csr;
+extern unsigned long mitigation_emulate_csr_enable;
 
 static int __init enable_mitigation(void)
 {
     pr_info("Enabling mitigation: csr_emulation is ON\n");
-    enable_mitigation_emulate_csr = 1;
+    mitigation_emulate_csr_enable = 1;
     return 0;
 }
 
 static void __exit disable_mitigation(void)
 {
     pr_info("Disabling mitigation: csr_emulation is OFF\n");
-    enable_mitigation_emulate_csr = 0;
+    mitigation_emulate_csr_enable = 0;
 }
 
 module_init(enable_mitigation);
