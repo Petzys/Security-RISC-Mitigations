@@ -10,6 +10,10 @@ sleep 3
 echo "Running iperf3"
 ./iperf/run.sh > iperf.log # iperf output (bandwidth) is interesting in addition to perf stat
 
+./loop_sigill/generate.sh
+sleep 3
+./loop_sigill/run.sh
+
 ./tar_gz_compress/generate.sh
 sleep 3
 ./tar_gz_compress/run.sh
