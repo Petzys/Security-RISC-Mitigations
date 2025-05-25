@@ -14,6 +14,14 @@ echo "Running iperf3"
 sleep 3
 ./loop_sigill/run.sh
 
+./loop_instret/generate.sh
+sleep 3
+./loop_instret/run.sh
+
+./context_switches/generate.sh
+sleep 3
+./context_switches/run.sh
+
 ./tar_gz_compress/generate.sh
 sleep 3
 ./tar_gz_compress/run.sh
