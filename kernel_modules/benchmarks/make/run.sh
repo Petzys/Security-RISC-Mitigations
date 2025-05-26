@@ -3,11 +3,11 @@ cd -- "$(dirname -- "${BASH_SOURCE:-$0}")"
 
 echo "Running make on the linux kernel"
 
-# switch to kernel directory
-cd ../../../custom-kernel/visionfive-linux-mitigations/
+# have make switch to the kernel directory
+KERNEL_DIR="../../../custom-kernel/visionfive-linux-mitigations/"
 
 # build kernel
-sudo perf stat -o ../make.stat make ARCH=riscv -j$(nproc) bindeb-pkg
+sudo perf stat -o ../make.stat make -C "$KERNEL_DIR" ARCH=riscv -j$(nproc) bindeb-pkg
 
 # remove output
 rm -f ../linux-*riscv64.deb

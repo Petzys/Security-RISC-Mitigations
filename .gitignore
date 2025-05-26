@@ -5,3 +5,5 @@
 *.mod.c
 !*.md
 !*.sh
+
+!/kernel_modules/benchmarks/results/**
