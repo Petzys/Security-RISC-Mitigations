@@ -1,20 +1,20 @@
-# started on Mon May 26 13:49:29 2025
+# started on Tue May 27 06:45:33 2025
 
 
  Performance counter stats for 'stress-ng --switch 8 --timeout 60s --metrics --log-file ../context_switches.log':
 
-         239691.70 msec task-clock                       #    3.982 CPUs utilized          
-          21199960      context-switches                 #   88.447 K/sec                  
-               121      cpu-migrations                   #    0.505 /sec                   
-              1344      page-faults                      #    5.607 /sec                   
-      359397579480      cycles                           #    1.499 GHz                    
-      240173020030      instructions                     #    0.67  insn per cycle         
-       29807295890      branches                         #  124.357 M/sec                  
-       12630528984      branch-misses                    #   42.37% of all branches        
+         239500.88 msec task-clock                       #    3.986 CPUs utilized          
+          20973411      context-switches                 #   87.571 K/sec                  
+               144      cpu-migrations                   #    0.601 /sec                   
+              1351      page-faults                      #    5.641 /sec                   
+      359150029251      cycles                           #    1.500 GHz                    
+      238067462384      instructions                     #    0.66  insn per cycle         
+       29448395225      branches                         #  122.957 M/sec                  
+       12849927253      branch-misses                    #   43.64% of all branches        
 
-      60.201174799 seconds time elapsed
+      60.085974801 seconds time elapsed
 
-       8.344842000 seconds user
-     231.370956000 seconds sys
+       8.355538000 seconds user
+     231.189463000 seconds sys
 
 

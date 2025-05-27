@@ -1,20 +1,20 @@
-# started on Mon May 26 13:47:51 2025
+# started on Tue May 27 06:43:57 2025
 
 
  Performance counter stats for 'ffmpeg -loglevel error -c:v h264 -i test_video.mp4 -c:v libx264 -c:a mp3 test_video.avi':
 
-         213979.05 msec task-clock                       #    2.860 CPUs utilized          
-             24344      context-switches                 #  113.768 /sec                   
-               777      cpu-migrations                   #    3.631 /sec                   
-             65048      page-faults                      #  303.992 /sec                   
-      383899940123      cycles                           #    1.794 GHz                    
-      411672651448      instructions                     #    1.07  insn per cycle         
-       29064506436      branches                         #  135.829 M/sec                  
-        1349516235      branch-misses                    #    4.64% of all branches        
+         213588.25 msec task-clock                       #    2.900 CPUs utilized          
+             26941      context-switches                 #  126.135 /sec                   
+               827      cpu-migrations                   #    3.872 /sec                   
+             64860      page-faults                      #  303.668 /sec                   
+      320290218198      cycles                           #    1.500 GHz                    
+      371911342356      instructions                     #    1.16  insn per cycle         
+       29042219475      branches                         #  135.973 M/sec                  
+        1312649827      branch-misses                    #    4.52% of all branches        
 
-      74.805774875 seconds time elapsed
+      73.658190334 seconds time elapsed
 
-     212.226499000 seconds user
-       1.705724000 seconds sys
+     212.207096000 seconds user
+       1.336100000 seconds sys
 
 

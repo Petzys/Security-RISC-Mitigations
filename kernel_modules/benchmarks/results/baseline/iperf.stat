@@ -1,20 +1,20 @@
-# started on Mon May 26 13:49:09 2025
+# started on Tue May 27 06:45:14 2025
 
 
  Performance counter stats for 'iperf3 -c 127.0.0.1 -i 0 -P 10':
 
-          10042.76 msec task-clock                       #    0.997 CPUs utilized          
-               322      context-switches                 #   32.063 /sec                   
-                 2      cpu-migrations                   #    0.199 /sec                   
-               505      page-faults                      #   50.285 /sec                   
-       15046635999      cycles                           #    1.498 GHz                    
-        8943749826      instructions                     #    0.59  insn per cycle         
-        1070742509      branches                         #  106.618 M/sec                  
-         108804312      branch-misses                    #   10.16% of all branches        
+          10022.35 msec task-clock                       #    0.996 CPUs utilized          
+               334      context-switches                 #   33.326 /sec                   
+                 1      cpu-migrations                   #    0.100 /sec                   
+               505      page-faults                      #   50.387 /sec                   
+       15010804470      cycles                           #    1.498 GHz                    
+        8512118822      instructions                     #    0.57  insn per cycle         
+        1005687534      branches                         #  100.344 M/sec                  
+         108016501      branch-misses                    #   10.74% of all branches        
 
-      10.071828263 seconds time elapsed
+      10.063278497 seconds time elapsed
 
-       0.069668000 seconds user
-       9.942746000 seconds sys
+       0.093895000 seconds user
+       9.900854000 seconds sys
 
 
