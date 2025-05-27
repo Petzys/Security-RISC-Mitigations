@@ -1,0 +1,20 @@
+# started on Mon May 26 13:49:26 2025
+
+
+ Performance counter stats for './loop_instret':
+
+              3.09 msec task-clock                       #    0.426 CPUs utilized          
+                 0      context-switches                 #    0.000 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+                40      page-faults                      #   12.958 K/sec                  
+           1153888      cycles                           #    0.374 GHz                    
+            774078      instructions                     #    0.67  insn per cycle         
+             83254      branches                         #   26.969 M/sec                  
+             14099      branch-misses                    #   16.93% of all branches        
+
+       0.007254649 seconds time elapsed
+
+       0.006316000 seconds user
+       0.000000000 seconds sys
+
+

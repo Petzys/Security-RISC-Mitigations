@@ -1,0 +1,20 @@
+# started on Mon May 26 13:50:38 2025
+
+
+ Performance counter stats for 'tar -xzf testfile.tar.gz':
+
+            534.49 msec task-clock                       #    0.835 CPUs utilized          
+               365      context-switches                 #  682.898 /sec                   
+                 0      cpu-migrations                   #    0.000 /sec                   
+               289      page-faults                      #  540.706 /sec                   
+         522726383      cycles                           #    0.978 GHz                    
+         539853202      instructions                     #    1.03  insn per cycle         
+          73360706      branches                         #  137.254 M/sec                  
+           1888127      branch-misses                    #    2.57% of all branches        
+
+       0.640413659 seconds time elapsed
+
+       0.427144000 seconds user
+       0.111650000 seconds sys
+
+

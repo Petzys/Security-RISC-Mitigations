@@ -1,0 +1,50 @@
+Running iperf3
+Connecting to host 127.0.0.1, port 5201
+[  6] local 127.0.0.1 port 38334 connected to 127.0.0.1 port 5201
+[  8] local 127.0.0.1 port 38348 connected to 127.0.0.1 port 5201
+[ 10] local 127.0.0.1 port 38362 connected to 127.0.0.1 port 5201
+[ 12] local 127.0.0.1 port 38366 connected to 127.0.0.1 port 5201
+[ 14] local 127.0.0.1 port 38372 connected to 127.0.0.1 port 5201
+[ 16] local 127.0.0.1 port 38388 connected to 127.0.0.1 port 5201
+[ 18] local 127.0.0.1 port 38404 connected to 127.0.0.1 port 5201
+[ 20] local 127.0.0.1 port 38416 connected to 127.0.0.1 port 5201
+[ 22] local 127.0.0.1 port 38430 connected to 127.0.0.1 port 5201
+[ 24] local 127.0.0.1 port 38446 connected to 127.0.0.1 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  6]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1023 KBytes       
+[  8]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1023 KBytes       
+[ 10]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1023 KBytes       
+[ 12]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1023 KBytes       
+[ 14]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1.31 MBytes       
+[ 16]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1.12 MBytes       
+[ 18]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1.31 MBytes       
+[ 20]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1.12 MBytes       
+[ 22]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1.25 MBytes       
+[ 24]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0   1.12 MBytes       
+[SUM]   0.00-10.02  sec  6.31 GBytes  5.41 Gbits/sec    0             
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  6]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[  6]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[  8]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[  8]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 10]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 10]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 12]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 12]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 14]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 14]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 16]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 16]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 18]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 18]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 20]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 20]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 22]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 22]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[ 24]   0.00-10.02  sec   646 MBytes   541 Mbits/sec    0             sender
+[ 24]   0.00-10.02  sec   646 MBytes   541 Mbits/sec                  receiver
+[SUM]   0.00-10.02  sec  6.31 GBytes  5.41 Gbits/sec    0             sender
+[SUM]   0.00-10.02  sec  6.31 GBytes  5.41 Gbits/sec                  receiver
+
+iperf Done.

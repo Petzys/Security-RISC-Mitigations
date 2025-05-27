@@ -1,0 +1,11 @@
+stress-ng: info:  [79281] setting to a 60 second run per stressor
+stress-ng: info:  [79281] dispatching hogs: 8 switch
+stress-ng: metrc: [79281] stressor       bogo ops real time  usr time  sys time   bogo ops/s     bogo ops/s CPU used per       RSS Max
+stress-ng: metrc: [79281]                           (secs)    (secs)    (secs)   (real time) (usr+sys time) instance (%)          (KB)
+stress-ng: metrc: [79281] switch         11315882     60.00      8.95    230.52    188595.18       47254.91        49.89          2132
+stress-ng: metrc: [79281] miscellaneous metrics:
+stress-ng: metrc: [79281] switch             42469.29 nanosecs per context switch (pipe method) (geometric mean of 8 instances)
+stress-ng: info:  [79281] passed: 8: switch (8)
+stress-ng: info:  [79281] failed: 0
+stress-ng: info:  [79281] skipped: 0
+stress-ng: info:  [79281] successful run completed in 60.01s (1 min, 0.01 secs)

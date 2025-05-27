@@ -1,0 +1,20 @@
+# started on Mon May 26 13:49:09 2025
+
+
+ Performance counter stats for 'iperf3 -c 127.0.0.1 -i 0 -P 10':
+
+          10042.76 msec task-clock                       #    0.997 CPUs utilized          
+               322      context-switches                 #   32.063 /sec                   
+                 2      cpu-migrations                   #    0.199 /sec                   
+               505      page-faults                      #   50.285 /sec                   
+       15046635999      cycles                           #    1.498 GHz                    
+        8943749826      instructions                     #    0.59  insn per cycle         
+        1070742509      branches                         #  106.618 M/sec                  
+         108804312      branch-misses                    #   10.16% of all branches        
+
+      10.071828263 seconds time elapsed
+
+       0.069668000 seconds user
+       9.942746000 seconds sys
+
+

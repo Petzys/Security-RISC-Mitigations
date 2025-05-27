@@ -1,0 +1,5 @@
+SIGILL handling took 0 cycles on average.
+
+real	0m9.148s
+user	0m0.050s
+sys	0m9.093s

@@ -1,0 +1,20 @@
+# started on Mon May 26 14:45:08 2025
+
+
+ Performance counter stats for 'make -C ../../../custom-kernel/visionfive-linux-mitigations/ ARCH=riscv -j4 bindeb-pkg':
+
+       11126477.41 msec task-clock                       #    3.717 CPUs utilized          
+            593917      context-switches                 #   53.379 /sec                   
+              8656      cpu-migrations                   #    0.778 /sec                   
+          52765632      page-faults                      #    4.742 K/sec                  
+    16681084878492      cycles                           #    1.499 GHz                    
+     8622974435165      instructions                     #    0.52  insn per cycle         
+     1239074259809      branches                         #  111.363 M/sec                  
+      333098681960      branch-misses                    #   26.88% of all branches        
+
+    2993.780985606 seconds time elapsed
+
+   10501.579087000 seconds user
+     621.402077000 seconds sys
+
+
