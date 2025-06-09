@@ -10,6 +10,7 @@ KERNEL_DIR="../../../custom-kernel/visionfive-linux-mitigations/"
 sudo perf stat -o ../make.stat make -C "$KERNEL_DIR" ARCH=riscv -j$(nproc) bindeb-pkg
 
 # remove output
+cd "$KERNEL_DIR"
 rm -f ../linux-*riscv64.deb
 rm -f ../linux-*riscv64.buildinfo
 rm -f ../linux-*riscv64.changes
