@@ -6,4 +6,4 @@
 !*.md
 !*.sh
 
-!/kernel_modules/benchmarks/results/**
+!/kernel_modules/benchmarks/results.old/**
